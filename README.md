@@ -1,4 +1,4 @@
-# Decimal discrimination using combination - Python
+#  Day54 - circular prime - Python
 ---
 
 ### 1.Import itertools

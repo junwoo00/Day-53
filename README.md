@@ -3,31 +3,48 @@
 
 ### 1.Import itertools
 ```
-from itertools import combinations
+from itertools import permutations
 ```
 
-### 2.Initialize count + Input list
-- The input is provided in the form of a list like [1,2,3,4], But when entered, python does not recognize it as a list. Therefore, it requires additional processing to remove the brackets at the beginning and end using [1:-1], and then splitting the string by commas using split(",").
+### 2. decimal check
+- Create a function to determine prime numbers
 ```
-count = 0
-num = list(map(int,input()[1:-1].split(",")))
+def is_prime(nums) :
+  if nums < 2:
+        return False
+  for i in range(2, int(nums ** 0.5) + 1):
+        if nums % i == 0:
+            return False
+  return True
 ```
 
-### 3.Decimal discrimination
-- According to the requirements, I use combinations(num, 3) to create combinations of 3 elements each, and evaluate each of these values using a for loop. Since the value i is in tuple form and we no longer need it, I reassign i to the sum of the tuple with i = sum(i). Then determine if the value of i is a prime number, and if it is, increment the count by 1.
+### 3. Find repeating decimals
+- Create a function to determine repeating decimals. The function is for each number from 2 to n−1:
+Use the is_prime function to check if a number is prime.
+If the number is prime, convert the number to a string to generate all permutations of the digits.
+Checks whether all permutations are prime. If at least one is not a prime number, it is not a repeating prime number.
+If all permutations are prime, add the numbers to the set of recurring primes.
+Finally, it returns a set of repeating decimals.
 ```
-for i in combinations(num,3):
-    i = sum(i)
-    c = True
-    for k in range(2,int(i**0.5)+1):
-        if i%k == 0:
-            c = False
-            break
-    if c == True:
-         count += 1
+def solution(n):
+    cir_primes = set()
+    for num in range(2, n):
+        if is_prime(num):
+            str_num = str(num)
+            circular = True
+            for perm in permutations(str_num):
+                if not is_prime(int("".join(perm))):
+                    circular = False
+                    break
+            if circular:
+                cir_primes.add(num)
+    return cir_primes
 ```
 
 ### 4.Print result
 ```
-print(count)
+n = 1000000
+result = len(solution(n))
+print(result)
+ 
 ```

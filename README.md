@@ -48,3 +48,63 @@ result = len(solution(n))
 print(result)
  
 ```
+
+
+
+
+#  Day53 - Prime Factorization - Python
+---
+
+### 1.Import iter
+```
+from itertools import permutations
+```
+
+### 2. inputting an integer, factorize the prime number.
+- Create a function to factorize prime numbers
+```
+def solution(n):
+    nums = []
+    while n > 1:
+      for i in range(2, n+1):
+         if n % i == 0:
+          nums.append(i)
+          n //= i
+          break
+    return nums
+```
+
+### 3. Print result
+```
+n = 12
+result = solution(n)
+print(result)
+ 
+```
+
+
+
+
+
+#  Day23 - Calculate the total number of pages needed - Python
+---
+
+### Get input
+- Enter the total number of cases ('m'). Enter the number of posts ('n') to display on one page.
+```
+m = int(input("총 건수를 입력하시오:"))
+n = int(input("한 페이지에 보여줄 게시물 수를 입력하시오:"))
+```
+
+### 2. Calculate total number of pages and print
+- Determine the number of pages based on the remainder of m divided by n
+
+```
+if n >= 1 :
+  if m % n == 0 :
+    print(m//n)
+  else :
+    print((m//n)+1)
+else :
+  print("입력오류")
+```
